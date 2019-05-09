@@ -3,19 +3,9 @@
     <body>
     
     <?php ob_start(); ?>
-    <!-- start left column here-->
-        <div class="leftcolumn">
 
-            <div class="header">
-                <nav class="globalmenu">                   
-                        <ul id="navigation_menu">
-                            <li><a href="index.php?action=about">About</a></li>
-                            <li><a href="index.php?action=listPosts">Posts</a></li>
-                            <li><a href="index.php">Home</a></li>
-                        </ul>
-                </nav>
-            </div>
-            
+    <!-- start left column here-->
+
             <div class="titleblog">
                 <h1>Alaskian stories</h1>    
                 <div class="titleimg"><img src="public/images/alaska1.jpg"/></div>  
@@ -32,20 +22,20 @@
             {
             ?>
 
-            <article class="card">
-                                
-                <h3><?php echo htmlspecialchars($data['title']); ?></h3>
-                <h6><em>le <?php echo $data['creation_date_fr']; ?></em></h6>
-                    <div class="image"><img src="public/images/draw.png"/></div><br />         
-                    <div class="chapter">
-                        <?php
-                            echo nl2br(htmlspecialchars($data['content']));
-                        ?>
-                    </div>
-                <br /><br />
-                <em><a href="index.php?action=post&id=<?= $data['id'] ?>">Commentaires</a></em>
-                    
-            </article>
+                <article class="card">
+                                    
+                    <h3><?php echo htmlspecialchars($data['title']); ?></h3>
+                    <h6><em>le <?php echo $data['creation_date_fr']; ?></em></h6>
+                        <div class="image"><img src="public/images/draw.png"/></div><br />         
+                        <div class="chapter">
+                            <?php
+                                echo nl2br(htmlspecialchars($data['content']));
+                            ?>
+                        </div>
+                    <br /><br />
+                    <em><a href="index.php?action=post&id=<?= $data['id'] ?>">Commentaires</a></em>
+                        
+                </article>
                            
             <?php
             }
@@ -55,13 +45,5 @@
 
             <?php require('view/frontend/template.php'); ?>
 
-            <br /><br />
-            <div class="footer">                
-                <a href="index.php?action=login">Administration</a></li>            
-            </div>
-
-        </div>
-
     </body>
-
-</html>        
+ 
