@@ -23,7 +23,9 @@
 
         	<br /><br />
         	<div class="footer">                 
-                <a href="index.php?action=login">Administration</a>
+                <a href="index.php?action=adminconnect">Administration</a>
+                <a href="index.php?action=register">Register</a>
+                <a href="index.php?action=connect">Connect</a>
             </div>
 
     	</div>

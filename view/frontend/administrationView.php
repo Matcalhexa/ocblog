@@ -2,6 +2,7 @@
 
 <body>
 
+    
 	<div class="titleblog">
         <h1>Alaskian stories</h1>
     </div>
