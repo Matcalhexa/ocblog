@@ -4,6 +4,8 @@
         <meta charset="utf-8" />
         <title><?= $title ?></title>
         <link href="public/css/blogstyle.css" rel="stylesheet" /> 
+        <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
     </head>
         
     <body>

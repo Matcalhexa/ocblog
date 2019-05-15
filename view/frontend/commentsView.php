@@ -9,7 +9,7 @@
             <h6><em>le <?= $post['creation_date_fr'] ?></em></h6>
 			<div class="image"><img src="public/images/draw.png"/></div><br />
 			<div class="chapter">
-                <?= nl2br(htmlspecialchars($post['content'])) ?>
+                <?= nl2br($post['content']) ?>
             </div>    
         </article>
 
@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <label for="comment">Comment</label><br />
-                    <textarea id="comment" name="comment"></textarea>
+                    <textarea type="text" id="comment" name="comment"></textarea>
                 </div>
                 <div>
                     <input type="submit" />
@@ -36,7 +36,7 @@
             {
                 ?>
                 <p class="comAuthor"><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-                <?= $comment['nb_report'] > 0 ? '<em>Ce commentaire a été reporté.</em>' : nl2br(htmlspecialchars($comment['comment'])) ?>
+                <p><?= $comment['nb_report'] > 0 ? '<em>Ce commentaire a été reporté.</em>' : nl2br($comment['comment']) ?></p>
 
                     <form method="POST" action="index.php?action=reportComment">
                     <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>"/>
