@@ -44,3 +44,22 @@ function deletePost($postId)
         header('Location: index.php?action=administration');
     }
 }
+
+//Create post
+function createPost($title, $content)
+{
+    $postManager = new postManager();
+    $affectedLines = $postManager->createPost($title, $content);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le post !');
+    }
+    else {
+        header('Location: index.php?action=administration');
+    }
+}
+
+function createPostView() {
+
+    require('view/frontend/createPostView.php');
+}

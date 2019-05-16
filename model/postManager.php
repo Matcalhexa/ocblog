@@ -39,4 +39,14 @@ class PostManager extends Manager
 		$affectedPost = $req->execute(array($postId));
         return $affectedPost;
 	}
+
+	//Create post
+	public function createPost($title, $content)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('INSERT INTO posts(title, content) VALUES(?, ?)');
+        $createdPost = $req->execute(array($title, $content));
+        return $createdPost;
+    }
 }
+

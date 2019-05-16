@@ -36,6 +36,10 @@ require('controller/backend.php');
             connect();
         }
 
+        elseif ($_GET['action'] == 'createPostView') {
+            createPostView();
+        }
+
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 getPost($_GET['id']);
@@ -80,6 +84,26 @@ require('controller/backend.php');
             validateComment($_GET['id']);
         }
     }
+
+       
+        elseif ($_GET['action'] == 'createPost') {
+            if (!empty($_POST['title']) && !empty($_POST['content'])) {
+                createPost($_POST['title'], $_POST['content']);
+            }
+            else {
+                echo 'Erreur : tous les champs ne sont pas remplis !';
+            } 
+        }
+
+        //Edit post
+        elseif ($_GET['action'] == 'updatePostView') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                updatePostView($_GET['id']);
+            }
+            else {
+                echo 'Erreur : aucun identifiant de billet envoyé';
+            }
+        }
 
         //Delete post
         elseif ($_GET['action'] == 'deletePost') {
