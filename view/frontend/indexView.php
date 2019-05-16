@@ -31,7 +31,7 @@
                         <div class="image"><img src="public/images/draw.png"/></div><br />         
                         <div class="chapter">
                             <?php
-                                echo nl2br(htmlspecialchars($data['content']));
+                                echo nl2br($data['content']);
                             ?>
                         </div>
                     <br /><br />

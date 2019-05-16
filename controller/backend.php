@@ -63,3 +63,25 @@ function createPostView() {
 
     require('view/frontend/createPostView.php');
 }
+
+//Edit post
+function updatePost($postId, $title, $content)
+{
+    $postManager = new postManager();
+    $affectedPost = $postManager->updatePost($postId, $title, $content);
+
+    if ($affectedPost === false) {
+        throw new Exception('Impossible d\'editer le post !');
+    }
+    else {
+        header('Location: index.php?action=administration');
+    }
+}
+
+function updatePostView($postId) {
+
+    $postManager = new postManager();
+    $post = $postManager->getPost($postId);
+
+    require('view/frontend/updatePostView.php');
+}
