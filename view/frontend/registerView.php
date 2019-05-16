@@ -6,7 +6,7 @@ $error = isFormValid($db);
 
 if (empty($error)) {
     $hashedPassword= password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
-    $insertmembre = $db->prepare('INSERT INTO membres(username, password, email) VALUES (?, ?, ?)');
+    $insertmembre = $db->prepare('INSERT INTO membres(username, password, email, role) VALUES (?, ?, ?, "User")');
     $insertmembre->execute(array(htmlspecialchars($_POST['username']), $hashedPassword, htmlspecialchars($_POST['email'])));
     $error = "Your account has been created!<a href=\"index.php?action=connect\">Connect</a>";
 }

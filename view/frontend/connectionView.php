@@ -3,38 +3,42 @@ session_start();
 
 $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
-if(isset($_POST['formconnect']))
+if(!empty($_POST['username']) AND !empty($_POST['password']))
 {
-    $user = htmlspecialchars($_POST['username']);
-    $pass = htmlspecialchars($_POST['password']);
-    $hashedPassword = password_hash(htmlspecialchars($pass), PASSWORD_DEFAULT);
-    if(!empty($user) AND !empty($hashedPassword))
-    {
+    $username = htmlspecialchars($_POST['username']);
 
-        $requser = $db->prepare('SELECT * FROM membres WHERE  username = ? AND password = ?');
-        $requser->execute(array($user, $hashedPassword));
-        $isPasswordCorrect = password_verify($_POST['password'], $hashedPassword);
-        if($isPasswordCorrect)
-        {
-            $userinfo = $requser->fetch();
-            $_SESSION['id'] = $userinfo['id'];
-            $_SESSION['username'] = $userinfo['username'];
-            $_SESSION['email'] = $userinfo['email'];
-            header("Location: index.php");
+    $request = $db->prepare('SELECT * FROM membres WHERE username = ?');
+    $request->execute(array($username));
+
+    $user = $request->fetch();
+
+    if(isset($user['id'])) {
+        if(password_verify(htmlspecialchars($_POST['password']), $user['password'])) {
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            if($user['role'] == 'User') {
+                header("Location: index.php");
+            }
+            elseif ($user['role'] == 'Admin') {
+                header("Location: index.php?action=administration");
+            }
         }
         else
         {
-            $erreur = "Wrong email or password";
+            $erreur = "Wrong password.";
         }
     }
     else
     {
-        $erreur = "Tous les champs doivent être complétés";
+        $erreur = "This user doesn't exists";
     }
 }
+else
+{
+    $erreur = "Tous les champs doivent être complétés";
+}
 ?>
-
-
 
 <html>
 <head>
@@ -47,7 +51,7 @@ if(isset($_POST['formconnect']))
     <div align="center">
         <h2>Connection</h2>
         <br /><br />
-        <form action="" method="POST">
+        <form action="index.php?action=connect" method="POST">
             <table>
                 <tr>
                     <td align="right">
@@ -65,11 +69,13 @@ if(isset($_POST['formconnect']))
                         <input type="password" placeholder="Your password" name="password">
                     </td>
                 </tr>
-                    <td></td>
+                <tr>
                     <td>
                         <br />
-                        <input type="submit" name="formconnect" value="Connect" />
+                        <input type="submit" value="Connect" />
                     </td>
                 </tr>
             </table>
         </form>
+    </div>
+</body>

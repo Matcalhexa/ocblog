@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +10,10 @@
     </head>
         
     <body>
+
+        <?= isset($_SESSION['username']) ? 'Welcome <strong>' . $_SESSION['username'] . '</strong>' : '' ?>
+        
+
     	<div class="leftcolumn">
 
             <div class="header">
@@ -28,6 +33,7 @@
                 <a href="index.php?action=adminconnect">Administration</a>
                 <a href="index.php?action=register">Register</a>
                 <a href="index.php?action=connect">Connect</a>
+                <a href="index.php?action=disconnect">Disconnect</a>
             </div>
 
     	</div>

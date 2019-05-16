@@ -37,6 +37,11 @@ function connect()
     require('view/frontend/connectionView.php');
 }
 
+function disconnect()
+{
+    require('view/frontend/disconnectView.php');
+}
+
 //Get all posts
 function getPosts()
 {

@@ -36,6 +36,10 @@ require('controller/backend.php');
             connect();
         }
 
+        elseif($_GET['action'] == 'disconnect') {
+            disconnect();
+        }
+
         elseif ($_GET['action'] == 'createPostView') {
             createPostView();
         }
