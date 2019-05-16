@@ -73,6 +73,13 @@ require('controller/backend.php');
             reportComment($_POST['comment_id']);
         }
     }
+
+        //Validate comment
+        elseif ($_GET['action'] == 'validateComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+            validateComment($_GET['id']);
+        }
+    }
 }
 	else {
 	    home();

@@ -16,3 +16,17 @@ function deleteComment($commentId)
         header('Location: index.php?action=administration');
     }
 }
+
+//Validate comment
+function validateComment($commentId)
+{
+    $commentManager = new commentManager();
+    $affectedLines = $commentManager->validateComment($commentId);
+
+    if ($affectedlines === false) {
+        throw new Exception('Impossible de supprimer le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=administration');
+    }
+}

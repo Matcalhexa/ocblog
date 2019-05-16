@@ -58,5 +58,16 @@ class CommentManager extends Manager
 
         return $affectedComment;
     }
+
+    //Validate comment
+    public function validateComment($commentId)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare('UPDATE comments SET nb_report = 0 WHERE id=?');
+        $affectedLines = $req->execute(array($commentId));
+        
+        return $affectedLines;
+    }
    
 }
