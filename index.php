@@ -80,6 +80,13 @@ require('controller/backend.php');
             validateComment($_GET['id']);
         }
     }
+
+        //Delete post
+        elseif ($_GET['action'] == 'deletePost') {
+           if (isset($_GET['id']) && $_GET['id'] > 0) {
+            deletePost($_GET['id']);
+        }
+    }
 }
 	else {
 	    home();

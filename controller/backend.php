@@ -30,3 +30,17 @@ function validateComment($commentId)
         header('Location: index.php?action=administration');
     }
 }
+
+//Delete post
+function deletePost($postId)
+{
+    $postManager = new postManager();
+    $affectedPost = $postManager->deletePost($postId);
+
+    if ($affectedPost === false) {
+        throw new Exception('Impossible de supprimer le post !');
+    }
+    else {
+        header('Location: index.php?action=administration');
+    }
+}
