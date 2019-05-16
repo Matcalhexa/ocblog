@@ -36,7 +36,7 @@
             {
                 ?>
                 <p class="comAuthor"><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-                <p><?= $comment['nb_report'] > 0 ? '<em>Ce commentaire a été reporté.</em>' : nl2br($comment['comment']) ?></p>
+                <p><?= $comment['nb_report'] > 0 ? ($comment['comment']) .'<p><small><em>*This comment has been reported '. ($comment['nb_report']) .' times*</em></small></p>' : ($comment['comment']) ?></p>
 
                     <form method="POST" action="index.php?action=reportComment">
                     <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>"/>

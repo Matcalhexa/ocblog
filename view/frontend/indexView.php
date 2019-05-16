@@ -1,10 +1,12 @@
-<?php $title = 'Alaskian stories'; ?>
+<?php $title = 'Alaskian stories';?>
 
     <body>
     
     <?php ob_start(); ?>
 
     <!-- start left column here-->
+
+
 
             <div class="titleblog">
                 <h1>Alaskian stories</h1>    

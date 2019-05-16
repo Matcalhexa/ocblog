@@ -59,7 +59,21 @@ require('controller/backend.php');
             echo 'Erreur : aucun identifiant de billet envoyé';
         }
     }
-} 
+
+        //Delete comment
+        elseif ($_GET['action'] == 'deleteComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+            deleteComment($_GET['id']);
+        }
+    }
+
+        //Report comment
+        elseif ($_GET['action'] == 'reportComment') {
+            if (isset($_POST['comment_id']) && $_POST['comment_id'] > 0) {
+            reportComment($_POST['comment_id']);
+        }
+    }
+}
 	else {
 	    home();
 	}

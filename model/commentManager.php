@@ -17,8 +17,19 @@ class CommentManager extends Manager
         return $comments;
     }
 
+    //Recover one comment
+    public function getComment($commentId)
+    {
+        $db = $this->dbConnect();
 
-	// Add comment
+        $req = $db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, nb_report FROM comments WHERE id = ?');
+        $req->execute(array($commentId));
+        $comment = $req->fetch();
+
+        return $comment;
+    }
+
+	//Add comment
  	public function postComment($postId, $author, $comment)
     {
         $db = $this->dbConnect();
@@ -26,4 +37,26 @@ class CommentManager extends Manager
         $affectedLines = $comments->execute(array($postId, $author, $comment));
         return $affectedLines;
     }
+
+    //Delete comment
+    public function deleteComment($commentId)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare('DELETE FROM comments WHERE id = ?');
+        $affectedLines = $req->execute(array($commentId));
+        
+        return $affectedLines;
+    }
+
+    //Report comment
+    public function reportComment($commentId, $nbReport)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE comments SET nb_report = ? WHERE id=?');
+        $affectedComment = $req->execute(array($nbReport, $commentId));
+
+        return $affectedComment;
+    }
+   
 }

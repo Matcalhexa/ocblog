@@ -74,10 +74,10 @@
                         {
                             ?>
                             <tr>
-                                <td><strong><?php echo $data['author']; ?></strong> - </td>
-                                <td><?php echo $data['comment']; ?> - </td>
-                                <td><?php echo $data['comment_date']; ?> - </td>
-                                <td><?php echo $data['nb_report']; ?>  </td>
+                                <td><strong><?php echo $data['author']; ?></strong></td>
+                                <td><?php echo $data['comment']; ?></td>
+                                <td><?php echo $data['comment_date']; ?></td>
+                                <td><?php echo $data['nb_report']; ?></td>
                                 <td>
                                     <a class="btn" href="index.php?action=validateComment&id=<?= $data['id'] ?>">Validate comment</a>
                                 </td>

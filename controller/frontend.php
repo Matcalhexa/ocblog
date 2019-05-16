@@ -70,3 +70,24 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+
+//Report a comment
+function reportComment($commentId){
+    // recuperer le commentaire en base
+    $commentManager = new commentManager();
+    $comment = $commentManager->getComment($commentId);
+    // creer variable avec champ report
+    $nbReport = $comment['nb_report'];
+    var_dump($nbReport);
+    $nbReport++;
+
+    $postId = $comment['post_id'];
+
+    $affectedLines = $commentManager->reportComment($commentId, $nbReport);
+     if ($affectedLines === false) {
+        throw new Exception('Impossible de reporter le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
+}
