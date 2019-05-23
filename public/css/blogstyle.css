@@ -1,0 +1,86 @@
+body 
+{
+  width: 80%;
+  height: 100%;
+  font-family: Arial;
+  background-color: #BAD8E7;
+  background-position : center center; 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    position: relative;
+    text-align:center;
+}
+
+a
+{
+    text-decoration: none;
+    color: blue;
+}
+
+section
+{
+  background-color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+nav
+{
+  background-color: white;
+    text-align: center;
+    
+}
+
+nav div a
+{
+  display: inline-block;
+  float: right;
+}
+
+.card
+{
+  background-color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.titleimg
+{
+  text-align: center;
+}
+
+.footer
+{
+  background-color: white;
+  text-align: center;
+  margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn
+{
+  padding:6px;
+  font:bold Arial;
+  background:#f5f5f5;
+  color:#555;
+  border-radius:2px;
+  width:100px;
+  border:1px solid #ccc;
+  box-shadow:1px 1px 3px #999;
+}
+
+.adminNav
+{
+  padding-left: 10px;
+  padding-right: 10px;
+}

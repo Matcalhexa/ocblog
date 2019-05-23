@@ -6,18 +6,17 @@
 
     <!-- start left column here-->
 
-
+        <section class="top">
 
             <div class="titleblog">
-                <h1>Alaskian stories</h1>    
-                <div class="titleimg"><img src="public/images/alaska1.jpg"/></div>  
+                <h1>Alaskian stories</h1>
             </div>
-
-            
-
+                <div class="titleimg"><img src="public/images/alaska1.jpg"/></div> 
             <div class="titlesection">
                 <h2>The latest posts from Alaska</h2>       
             </div>
+
+        </section>
 
             <?php
             while ($data = $posts->fetch())

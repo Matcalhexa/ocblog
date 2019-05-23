@@ -3,9 +3,14 @@
 	<body>
 		<?php ob_start(); ?>
 
-		<div class="titlesection">
-	        <h1>Posts from Alaska</h1>       
-	    </div>
+        <section class="top">
+
+    		<div class="titlesection">
+    	        <h1>Posts from Alaska</h1>   
+                    <div class="titleimg"><img src="public/images/alaska2.jpg"/></div>     
+    	    </div>
+
+        </section>
 
             <?php
             while ($data = $posts->fetch())
