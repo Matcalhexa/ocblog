@@ -33,7 +33,7 @@ require('controller/backend.php');
                 login($_POST['username'], $_POST['password']);
             }
             else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
+                echo 'Error : All fields must be completed.';
             } 
         }
 
@@ -42,7 +42,7 @@ require('controller/backend.php');
                 signup($_POST['username'], $_POST['password'], $_POST['passwordconfirm'], $_POST['email'], $_POST['emailconfirm']);
             }
             else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
+                echo 'Error : All fields must be completed.';
             } 
         }
 
@@ -59,7 +59,7 @@ require('controller/backend.php');
                 updatePostView($_GET['id']);
             }
             else {
-                echo 'Erreur : aucun identifiant de billet envoyé';
+                echo 'Error : no ticket ID sent.';
             }
         }
 
@@ -68,7 +68,7 @@ require('controller/backend.php');
                 getPost($_GET['id']);
             }
             else {
-                echo 'Erreur : aucun identifiant de billet envoyé';
+                echo 'Error : no ticket ID sent.';
             }
         }
 
@@ -79,11 +79,11 @@ require('controller/backend.php');
                 addComment($_GET['id'], $_POST['author'], $_POST['comment']);
             }
             else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
+                echo 'Error : All fields must be completed.';
             }
         }
         else {
-            echo 'Erreur : aucun identifiant de billet envoyé';
+            echo 'Error : no ticket ID sent.';
         }
     }
 
@@ -114,7 +114,7 @@ require('controller/backend.php');
                 createPost($_POST['title'], $_POST['content']);
             }
             else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
+                echo 'Error : All fields must be completed.';
             } 
         }
 
@@ -124,7 +124,7 @@ require('controller/backend.php');
                 updatePost($_POST['id'],$_POST['title'], $_POST['content']);
             }
             else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
+                echo 'Error : All fields must be completed.';
             } 
         }
 

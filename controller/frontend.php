@@ -123,12 +123,12 @@ function login($username, $password)
         }
         else
         {
-            $erreur = "Wrong password.";
+            $error = "Wrong password.";
         }
     }
     else
     {
-        $erreur = "This user doesn't exists";
+        $error = "This user doesn't exists";
     }
 }
 

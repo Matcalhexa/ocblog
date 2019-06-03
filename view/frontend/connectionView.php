@@ -19,7 +19,7 @@
                 </ul> 
 </nav>
 
-    <p><?= isset($erreur) ? $erreur : "" ?></p>
+    <p><?= isset($error) ? $error : "" ?></p>
     <div align="center">
         <h2>Connection</h2>
         <br /><br />
@@ -50,5 +50,12 @@
             </table>
         </form>
     </div>
+    <div class="error">
+            <?php
+            if (isset($error)) {
+                echo '<font color="#cc00ff">' . $error . "</font>";
+            }
+            ?>
+        </div>
 </body>
 </html>
