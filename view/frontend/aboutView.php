@@ -7,7 +7,7 @@
 	 	<div class="biography-extend">
             <div class="card">
                 <h1>Jean Forteroche</h1>
-                <div class="titleimg"><img src="public/images/jeanf2.jpg" width=400px /></div>
+                <div class="image"><img src="public/images/jeanf2.jpg" width=200px /></div>
 
                  <div class="chapter">
                  <p> Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.</p>

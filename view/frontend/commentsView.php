@@ -7,12 +7,13 @@
     	 <article class="card">
             <h3><?= htmlspecialchars($post['title']) ?></h3>
             <h6><em>le <?= $post['creation_date_fr'] ?></em></h6>
-			<div class="image"><img src="public/images/draw.png"/></div><br />
+			<div><img width=200px src="public/images/logo.png" /></div><br />
 			<div class="chapter">
                 <?= nl2br($post['content']) ?>
             </div>    
         </article>
 
+        <div class="card">
 		<h2>New comment</h2><br/>
 
             <form action="index.php?action=addComment&id=<?= $post['id'] ?>" method="post">
@@ -25,10 +26,12 @@
                     <textarea type="text" id="comment" name="comment"></textarea>
                 </div>
                 <div>
-                    <input type="submit" />
+                    <input class="btn" type="submit" />
                 </div>
             </form>
+        </div>
 
+        <div class="card">
         <h2>Posted comments</h2>
 
             <?php
@@ -36,19 +39,22 @@
             {
                 ?>
                 <p class="comAuthor"><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-                <p><?= $comment['nb_report'] > 0 ? ($comment['comment']) .'<p><small><em>*This comment has been reported '. ($comment['nb_report']) .' times*</em></small></p>' : ($comment['comment']) ?></p>
+                <div class="content"> <?= $comment['nb_report'] > 0 ? ($comment['comment']) .'<p><small><em>*This comment has been reported '. ($comment['nb_report']) .' times*</em></small></p>' : ($comment['comment'])?> </div>
 
                     <form method="POST" action="index.php?action=reportComment">
                     <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>"/>
-                    <input type="submit" name="report" value="Report comment"/>
+                    <input class="btn" type="submit" name="report" value="Report comment"/>
                     </form>
+        
 
                     <?php
                 }
                 ?>
+        </div>
 
     <?php $content = ob_get_clean(); ?>
 	<?php require('view/frontend/template.php'); ?>
+
 
     </body>
 
