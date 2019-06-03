@@ -16,24 +16,34 @@ require('controller/backend.php');
             getPosts();
         }
 
-        elseif($_GET['action'] == 'login') {
-            login();
-        }
-
-        elseif($_GET['action'] == 'administration') {
-            administration();
-        }
-
-        elseif($_GET['action'] == 'adminconnect') {
-            adminconnect();
-        }
-
         elseif($_GET['action'] == 'register') {
             register();
         }
 
         elseif($_GET['action'] == 'connect') {
             connect();
+        }
+
+        elseif($_GET['action'] == 'administration') {
+            administration();
+        }
+
+        elseif($_GET['action'] == 'login') {
+            if (!empty($_POST['username']) && !empty($_POST['password'])) {
+                login($_POST['username'], $_POST['password']);
+            }
+            else {
+                echo 'Erreur : tous les champs ne sont pas remplis !';
+            } 
+        }
+
+        elseif($_GET['action'] == 'signup') {
+            if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['passwordconfirm']) && !empty($_POST['email']) && !empty($_POST['emailconfirm'])) {
+                signup($_POST['username'], $_POST['password'], $_POST['passwordconfirm'], $_POST['email'], $_POST['emailconfirm']);
+            }
+            else {
+                echo 'Erreur : tous les champs ne sont pas remplis !';
+            } 
         }
 
         elseif($_GET['action'] == 'disconnect') {
@@ -117,9 +127,6 @@ require('controller/backend.php');
                 echo 'Erreur : tous les champs ne sont pas remplis !';
             } 
         }
-
-
-        
 
         //Delete post
         elseif ($_GET['action'] == 'deletePost') {

@@ -1,7 +1,9 @@
 <?php
+session_start();
 
 require_once('model/postManager.php');
 require_once('model/commentManager.php');
+require_once('model/userManager.php');
 
 //Navigation fonction
 function home()
@@ -17,16 +19,6 @@ function about()
     require('view/frontend/aboutView.php');
 }
 
-function administration()
-{
-    require('view/frontend/administrationView.php');
-}
-
-function adminconnect()
-{
-    require('view/frontend/adminConnectView.php');
-}
-
 function register()
 {
     require('view/frontend/registerView.php');
@@ -40,6 +32,17 @@ function connect()
 function disconnect()
 {
     require('view/frontend/disconnectView.php');
+}
+
+function administration()
+{
+    if(isset($_SESSION['username']) AND isset($_SESSION['role']) AND $_SESSION['role']=="Admin"){
+    require('view/frontend/administrationView.php');
+    }
+    else{
+        $erreur= "Accès refusé";
+        require('view/frontend/connectionView.php');
+    }
 }
 
 //Get all posts
@@ -89,10 +92,94 @@ function reportComment($commentId){
     $postId = $comment['post_id'];
 
     $affectedLines = $commentManager->reportComment($commentId, $nbReport);
-     if ($affectedLines === false) {
+    if ($affectedLines === false) {
         throw new Exception('Impossible de reporter le commentaire !');
     }
     else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+
+function login($username, $password)
+{
+    $username = htmlspecialchars($username);
+    $password = htmlspecialchars($password);
+
+    $userManager = new userManager();
+    $user = $userManager->getUser($username);
+
+    if(isset($user['id'])) {
+        if(password_verify($password, $user['password'])) {
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
+            if($user['role'] == 'User') {
+                header("Location: index.php");
+            }
+            elseif ($user['role'] == 'Admin') {
+                header("Location: index.php?action=administration");
+            }
+        }
+        else
+        {
+            $erreur = "Wrong password.";
+        }
+    }
+    else
+    {
+        $erreur = "This user doesn't exists";
+    }
+}
+
+function signup($username, $password, $passwordConfirm, $email, $emailConfirm) {
+    $username = htmlspecialchars($username);
+    $password = htmlspecialchars($password);
+    $passwordConfirm = htmlspecialchars($passwordConfirm);
+    $email = htmlspecialchars($email);
+    $emailConfirm = htmlspecialchars($emailConfirm);
+
+    $error = "";
+
+    if (
+        empty($_POST["username"]) or
+        empty($_POST["password"]) or
+        empty($_POST["passwordconfirm"]) or
+        empty($_POST["email"]) or
+        empty($_POST["emailconfirm"])
+    ) {
+        $error = "*All fields must be completed.*";
+    } else {
+        if ($_POST["email"] != $_POST["emailconfirm"]) {
+            $error = "*Your email addresses do not match*";
+        } elseif ($_POST["password"] != $_POST["passwordconfirm"]) {
+            $error =  "*Your passwords do not match*";
+        } elseif (strlen($_POST["username"]) > 255) {
+            $error = "*Your username must not exceed 255 characters*";
+        } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+            $error = "*Your email adress is invalid*";
+        }
+    }
+
+    $userManager = new userManager();
+
+    if (empty($error)) {
+        $user = $userManager->getUserByEmail($email);
+        if(isset($user['id'])) {
+            $error = "*Email address already used*";
+        }
+        else {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $createdUser = $userManager->createUser($username, $hashedPassword, $email);
+            if(!isset($createUser['id'])) {
+                session_destroy();
+                header("Location: index.php?action=connect");
+            }
+            else {
+                $error = "Error while creating your account. Please retry";
+            }
+        }
+    }
+
+    require('view/frontend/registerView.php');
 }

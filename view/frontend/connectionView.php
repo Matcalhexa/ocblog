@@ -1,45 +1,3 @@
-<?php
-session_start();
-
-$db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-
-if(!empty($_POST['username']) AND !empty($_POST['password']))
-{
-    $username = htmlspecialchars($_POST['username']);
-
-    $request = $db->prepare('SELECT * FROM membres WHERE username = ?');
-    $request->execute(array($username));
-
-    $user = $request->fetch();
-
-    if(isset($user['id'])) {
-        if(password_verify(htmlspecialchars($_POST['password']), $user['password'])) {
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email'];
-            if($user['role'] == 'User') {
-                header("Location: index.php");
-            }
-            elseif ($user['role'] == 'Admin') {
-                header("Location: index.php?action=administration");
-            }
-        }
-        else
-        {
-            $erreur = "Wrong password.";
-        }
-    }
-    else
-    {
-        $erreur = "This user doesn't exists";
-    }
-}
-else
-{
-    $erreur = "Tous les champs doivent être complétés";
-}
-?>
-
 <html>
 <head>
     <meta charset="utf-8" />
@@ -48,10 +6,24 @@ else
 </head>
 
 <body>
+
+<nav class="topmenu" id="topmenu"> 
+
+    <div class="welcomemsg"><?= isset($_SESSION['username']) ? 'WELCOME <strong>' . $_SESSION['username'] . '</strong>' : '' ?></div>
+        
+                <ul class="navmenu">
+                    <li><a class="btn" href="index.php?action=disconnect">Disconnect</a></li>
+                    <li class="navlink"><a href="index.php?action=about">About</a></li>
+                    <li class="navlink"><a href="index.php?action=listPosts">Posts</a></li>
+                    <li class="navlink"><a href="index.php">Home</a></li>
+                </ul> 
+</nav>
+
+    <p><?= isset($erreur) ? $erreur : "" ?></p>
     <div align="center">
         <h2>Connection</h2>
         <br /><br />
-        <form action="index.php?action=connect" method="POST">
+        <form action="index.php?action=login" method="POST">
             <table>
                 <tr>
                     <td align="right">
@@ -72,7 +44,7 @@ else
                 <tr>
                     <td>
                         <br />
-                        <input type="submit" value="Connect" />
+                        <input class="btn" type="submit" value="Connect" />
                     </td>
                 </tr>
             </table>
