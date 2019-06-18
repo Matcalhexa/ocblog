@@ -1,14 +1,13 @@
-<?php $title = 'Alaskian stories'; ?>
-
+<?php $title = 'Alaskian stories';
+ob_start();
+?>
 <body>
-    <?php ob_start(); ?>
-	
 	<div class='card'>
                 <h2>Edit posts</h2>
                 
                 <?php
 
-                $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+                $db = new PDO('mysql:host=db5000094081.hosting-data.io;dbname=dbs88680;charset=utf8', 'dbu296893', 'BlOgJf30210*');
 
                 $req = $db->query('SELECT id, title, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY creation_date');
                 ?>
@@ -54,7 +53,7 @@
                 <div class='card'>
                     <h2>Moderate comments</h2>
                     <?php
-                    $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+                    $db = new PDO('mysql:host=db5000094081.hosting-data.io;dbname=dbs88680;charset=utf8', 'dbu296893', 'BlOgJf30210*');
                     $req2 = $db->query('SELECT id, post_id, author, comment, comment_date, nb_report FROM comments WHERE nb_report > 0');
                     ?>
                     <table>
@@ -87,7 +86,7 @@
                     </table>
                 </div>
 
-                <?php $content = ob_get_clean(); ?>
-				<?php require('view/frontend/template.php'); ?>
+                <?php $content = ob_get_clean();
+				require('view/frontend/template.php');?>
 
             </body>

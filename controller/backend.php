@@ -1,87 +1,111 @@
 <?php
-
 require_once('model/postManager.php');
 require_once('model/commentManager.php');
 
-//Delete comment
 function deleteComment($commentId)
 {
+    if(isAdmin()){
     $commentManager = new commentManager();
     $affectedLines = $commentManager->deleteComment($commentId);
-
-    if ($affectedlines === false) {
-        throw new Exception('Impossible de supprimer le commentaire !');
+    if($affectedLines === false){
+        throw new Exception('Could not delete comment');
     }
-    else {
-        header('Location: index.php?action=administration');
+    else{
+        header('Location:index.php?action=administration'); exit;
     }
 }
+else{
+$error = "Access denied";
+require('view/frontend/connectionView.php');
+}
+}
 
-//Validate comment
 function validateComment($commentId)
 {
+    if(isAdmin()){
     $commentManager = new commentManager();
     $affectedLines = $commentManager->validateComment($commentId);
 
-    if ($affectedlines === false) {
-        throw new Exception('Impossible de supprimer le commentaire !');
+    if($affectedLines === false){
+    throw new Exception('Could not validate comment');
     }
-    else {
-        header('Location: index.php?action=administration');
+    else{
+        header('Location:index.php?action=administration'); exit;
     }
+    }
+else{
+$error = "Access denied";
+require('view/frontend/connectionView.php');
+}
 }
 
-//Delete post
 function deletePost($postId)
 {
+    if(isAdmin()){
     $postManager = new postManager();
     $affectedPost = $postManager->deletePost($postId);
 
-    if ($affectedPost === false) {
-        throw new Exception('Impossible de supprimer le post !');
+    if($affectedPost === false){
+    throw new Exception('Could not delete post');
     }
-    else {
-        header('Location: index.php?action=administration');
+    else{
+    header('Location:index.php?action=administration'); exit;
     }
+    }
+else{
+$error = "Access denied";
+require('view/frontend/connectionView.php');
+}
 }
 
-//Create post
 function createPost($title, $content)
 {
+    if(isAdmin()){
     $postManager = new postManager();
     $affectedLines = $postManager->createPost($title, $content);
 
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le post !');
+    if($affectedLines === false){
+    throw new Exception('Could not create post');
     }
-    else {
-        header('Location: index.php?action=administration');
+    else{
+        header('Location:index.php?action=administration'); exit;
     }
+    }
+else{
+$error = "Access denied";
+require('view/frontend/connectionView.php');
+}
 }
 
-function createPostView() {
 
+function createPostView()
+{
     require('view/frontend/createPostView.php');
 }
 
 //Edit post
 function updatePost($postId, $title, $content)
 {
+    if(isAdmin()){
     $postManager = new postManager();
     $affectedPost = $postManager->updatePost($postId, $title, $content);
 
-    if ($affectedPost === false) {
-        throw new Exception('Impossible d\'editer le post !');
+    if($affectedPost === false){
+        throw new Exception('Could not edit post');
     }
-    else {
-        header('Location: index.php?action=administration');
+    else{
+        header('Location:index.php?action=administration'); exit;
     }
+    }
+else{
+$error = "Access denied";
+require('view/frontend/connectionView.php');
+}
 }
 
-function updatePostView($postId) {
-
+function updatePostView($postId)
+{
     $postManager = new postManager();
     $post = $postManager->getPost($postId);
-
     require('view/frontend/updatePostView.php');
 }

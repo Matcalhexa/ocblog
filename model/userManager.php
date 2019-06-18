@@ -2,7 +2,8 @@
 
 require_once("model/connectManager.php");
 
-class UserManager extends Manager {
+class UserManager extends Manager
+{
 	
 	public function getUser($username)
 	{
@@ -22,6 +23,18 @@ class UserManager extends Manager {
 
 		$request  = $db->prepare('SELECT * FROM membres WHERE email = ?');
 		$request->execute(array($email));
+
+		$user = $request->fetch();
+
+		return $user;
+	}
+
+	public function getUserByUsername($username)
+	{
+		$db = $this->dbConnect();
+
+		$request  = $db->prepare('SELECT * FROM membres WHERE username = ?');
+		$request->execute(array($username));
 
 		$user = $request->fetch();
 

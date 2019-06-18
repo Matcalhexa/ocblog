@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <nav class="topmenu" id="topmenu"> 
+    <nav class="topmenu" id="topmenu">
 
         <div class="welcomemsg"><?= isset($_SESSION['username']) ? 'WELCOME <strong>' . $_SESSION['username'] . '</strong>' : '' ?></div>
         
@@ -16,7 +16,7 @@
             <li class="navlink"><a href="index.php?action=about">About</a></li>
             <li class="navlink"><a href="index.php?action=listPosts">Posts</a></li>
             <li class="navlink"><a href="index.php">Home</a></li>
-        </ul> 
+        </ul>
     </nav>
 
     <p><?= isset($error) ? $error : "" ?></p>
@@ -77,7 +77,7 @@
 
         <div class="error">
             <?php
-            if (isset($error)) {
+            if(isset($error)){
                 echo '<font color="#cc00ff">' . $error . "</font>";
             }
             ?>

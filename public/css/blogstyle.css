@@ -1,7 +1,7 @@
 @font-face
 {
 font-family: "GeosansLight";
-src: url(http://localhost/ocblog/public/polices/GeosansLight.ttf);
+src: url(../polices/GeosansLight.ttf);
 }
 
 body
@@ -9,7 +9,7 @@ body
 width: 70%;
 margin:auto;
 text-align: center;
-background-image: url(http://localhost/ocblog/public/images/background.jpg);
+background-image: url(../images/background.jpg);
 background-size: cover;
 background-attachment: fixed;
 }

@@ -1,16 +1,16 @@
-<?php $title = 'Alaskian stories'; ?>
+<?php $title = 'Alaskian stories';?>
 
-    <body>
+<body>
     
-    <?php ob_start(); ?>
+    <?php ob_start();?>
 
     	 <article class="card">
             <h3><?= htmlspecialchars($post['title']) ?></h3>
             <h6><em>le <?= $post['creation_date_fr'] ?></em></h6>
 			<div><img width=200px src="public/images/logo.png" /></div><br />
 			<div class="chapter">
-                <?= nl2br($post['content']) ?>
-            </div>    
+                <?=($post['content'])?>
+            </div>
         </article>
 
         <div class="card">
@@ -39,7 +39,8 @@
             {
                 ?>
                 <p class="comAuthor"><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-                <div class="content"> <?= $comment['nb_report'] > 0 ? ($comment['comment']) .'<p><small><em>*This comment has been reported '. ($comment['nb_report']) .' times*</em></small></p>' : ($comment['comment'])?> </div>
+                <div class="content"> <?= $comment['nb_report'] > 0 ? ($comment['comment']) .'<p><small><em>*This comment has been reported '. ($comment['nb_report']) .' times*</em></small></p>' : ($comment['comment'])?>
+                </div>
 
                     <form method="POST" action="index.php?action=reportComment">
                     <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>"/>
@@ -53,8 +54,7 @@
         </div>
 
     <?php $content = ob_get_clean(); ?>
-	<?php require('view/frontend/template.php'); ?>
+	<?php require('view/frontend/template.php');?>
 
-
-    </body>
+</body>
 

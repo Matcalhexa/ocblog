@@ -3,7 +3,6 @@
 require_once("model/connectManager.php");
 
 class PostManager extends Manager
-
 {
 	//Recover the last 3 post the most recent
 	public function getRecentsPosts()
@@ -58,7 +57,6 @@ class PostManager extends Manager
         $affectedPost = $req->execute(array($title, $content, $postId));
         
         return $affectedPost;
-
     }
 }
 

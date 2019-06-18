@@ -1,12 +1,12 @@
-<?php $title = 'Alaskian stories'; ?>
+<?php $title = 'Alaskian stories';?>
 
 	<body>
-		<?php ob_start(); ?>
+		<?php ob_start();?>
 
         <section class="top">
 
     		<div class="titlesection">
-    	        <h1>Posts from Alaska</h1>      
+    	        <h1>Posts from Alaska</h1>   
     	    </div>
 
         </section>
@@ -20,7 +20,7 @@
 					<h5><em>le <?php echo $data['creation_date_fr']; ?></em></h5>
                     <div><img width=200px src="public/images/logo.png" /></div><br />
                     <div class="chapter">
-                        <?php echo nl2br($data['content']);?>
+                        <?php echo ($data['content']);?>
                     </div>
                     <br /><br />
                     <a class="link" href="index.php?action=post&id=<?= $data['id'] ?>">Comments</a>
@@ -31,7 +31,7 @@
             $posts->closeCursor();
             ?>
 
-	<?php $content = ob_get_clean(); ?>
-	<?php require('view/frontend/template.php'); ?>
+	<?php $content = ob_get_clean();?>
+	<?php require('view/frontend/template.php');?>
 
     </body>

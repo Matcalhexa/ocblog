@@ -2,23 +2,18 @@
 <head>
     <meta charset="utf-8" />
     <title>Connection</title>
-    <link href="public/css/blogstyle.css" rel="stylesheet" /> 
+    <link href="public/css/blogstyle.css" rel="stylesheet" />
 </head>
-
 <body>
-
-<nav class="topmenu" id="topmenu"> 
-
-    <div class="welcomemsg"><?= isset($_SESSION['username']) ? 'WELCOME <strong>' . $_SESSION['username'] . '</strong>' : '' ?></div>
-        
-                <ul class="navmenu">
-                    <li><a class="btn" href="index.php?action=disconnect">Disconnect</a></li>
-                    <li class="navlink"><a href="index.php?action=about">About</a></li>
-                    <li class="navlink"><a href="index.php?action=listPosts">Posts</a></li>
-                    <li class="navlink"><a href="index.php">Home</a></li>
-                </ul> 
-</nav>
-
+    <nav class="topmenu" id="topmenu">
+        <div class="welcomemsg"><?= isset($_SESSION['username']) ? 'WELCOME <strong>' . $_SESSION['username'] . '</strong>' : '' ?></div>
+        <ul class="navmenu">
+            <li><a class="btn" href="index.php?action=disconnect">Disconnect</a></li>
+            <li class="navlink"><a href="index.php?action=about">About</a></li>
+            <li class="navlink"><a href="index.php?action=listPosts">Posts</a></li>
+            <li class="navlink"><a href="index.php">Home</a></li>
+        </ul>
+    </nav>
     <p><?= isset($error) ? $error : "" ?></p>
     <div align="center">
         <h2>Connection</h2>
@@ -51,11 +46,11 @@
         </form>
     </div>
     <div class="error">
-            <?php
-            if (isset($error)) {
-                echo '<font color="#cc00ff">' . $error . "</font>";
-            }
-            ?>
-        </div>
+        <?php
+        if(isset($error)){
+            echo '<font color="#cc00ff">' . $error . "</font>";
+        }
+        ?>
+    </div>
 </body>
 </html>
